@@ -4,7 +4,7 @@ Created on Nov 27, 2022
 @author: Alison Glore
 
 READ ME
-Inital Kivy Framework Code
+Initial Kivy Framework
 
 '''
 
