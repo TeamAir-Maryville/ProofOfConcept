@@ -1,0 +1,204 @@
+WindowManager:
+    HomeScreen:
+    AddMovieScreen:
+    AddTvScreen:
+    GetRecommendationScreen:
+    GetRecommendationMovieScreen:
+    GetRecommendationTvScreen:
+
+<HomeScreen>:
+    canvas.before:
+        Color:
+            rgba: (235/255, 197/255, 131/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    name: "HomeScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Watcher"
+            font_size: "60sp"
+            size_hint: 1,1
+            color: (0, 0, 0, 1)
+
+        Button:
+            text: "Add Show"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            background_normal: ''
+            background_color: (222/255, 171/255, 82/255,1)
+            color: (0, 0, 0, 1)
+            on_release: app.root.current = "AddTvScreen"
+        Button:
+            text: "Add Movie"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            background_normal: ''
+            background_color: (222/255, 171/255, 82/255,1)
+            color: (0, 0, 0, 1)
+            on_release: app.root.current = "AddMovieScreen"
+        Button:
+            text: "Recommendation"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            background_normal: ''
+            background_color: (235/255, 151/255, 16/255,1)
+            on_release: app.root.current = "GetRecommendationScreen"
+        Label:
+            text: ""
+            size_hint: .5,.5
+
+
+
+<AddMovieScreen>:
+    name: "AddMovieScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Add Movie"
+            font_size: "60sp"
+            size_hint: 1,1
+
+        TextInput:
+            id: title
+            multiline: False
+            pos_hint: { "center_x": .5}
+
+        TextInput:
+            id: duration
+            multiline: False
+            pos_hint: { "center_x": .5}
+
+        Button:
+            text: "Enter"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            on_release:
+                root.addMovie(title, duration)
+                app.root.current = "HomeScreen"
+
+        Label:
+            text: ""
+            size_hint: .5,.5
+
+
+<AddTvScreen>:
+    name: "AddTvScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Add TV Show"
+            font_size: "60sp"
+            size_hint: 1,1
+
+        TextInput:
+            id: title
+            multiline: False
+            pos_hint: { "center_x": .5}
+
+        TextInput:
+            id: duration
+            multiline: False
+            pos_hint: { "center_x": .5}
+
+        Button:
+            text: "Enter"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            on_release:
+                root.addShow(title, duration)
+                app.root.current = "HomeScreen"
+
+        Label:
+            text: ""
+            size_hint: .5,.5
+
+
+<GetRecommendationScreen>:
+    name: "GetRecommendationScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Recommendation"
+            font_size: "60sp"
+            size_hint: 1,1
+
+        Button:
+            text: "Movie?"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            on_release: app.root.current = "GetRecommendationMovieScreen"
+        Button:
+            text: "TV Show?"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            on_release: app.root.current = "GetRecommendationTvScreen"
+        Label:
+            text: ""
+            size_hint: .5,.5
+
+<GetRecommendationMovieScreen>:
+    name: "GetRecommendationMovieScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Recommendation Movie"
+            font_size: "60sp"
+            size_hint: 1,1
+
+        TextInput:
+            id: AvailableTime
+            multiline: False
+            pos_hint: { "center_x": .5}
+
+        Button:
+            text: "Enter"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            on_release:
+                root.movieRecommendation(AvailableTime)
+                app.root.current = "HomeScreen"
+
+        Label:
+            text: ""
+            size_hint: .5,.5
+
+<GetRecommendationTvScreen>:
+    name: "GetRecommendationTvScreen"
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Recommendation TV Show"
+            font_size: "60sp"
+            size_hint: 1,1
+
+        TextInput:
+            id: AvailableTime
+            multiline: False
+            pos_hint: { "center_x": .5}
+
+        Button:
+            text: "Enter"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            on_release: app.root.current = "HomeScreen"
+
+        Label:
+            text: ""
+            size_hint: .5,.5
