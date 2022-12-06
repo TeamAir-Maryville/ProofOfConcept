@@ -1,4 +1,0 @@
-15 minute show,15
-30 minute show,30
-60 minute show,60
-2 hour long show,120
