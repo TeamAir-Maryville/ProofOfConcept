@@ -1,0 +1,373 @@
+WindowManager:
+    HomeScreen:
+    AddMovieScreen:
+    AddTvScreen:
+    GetRecommendationScreen:
+    GetRecommendationMovieScreen:
+    GetRecommendationTvScreen:
+
+<HomeScreen>:
+    canvas.before:
+        Color:
+            rgba: (1, 222/255, 167/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+    name: "HomeScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+        Label:
+            text: "Watcher"
+            font_size: "70sp"
+            size_hint: 1,1
+            color: (0, 0, 0, 1) #Text Color
+            font_name: "Gabriola"
+        RoundedButton:
+            text: "Add Show"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            font_name: "Times"
+            on_release: app.root.current = "AddTvScreen"
+        RoundedButton:
+            text: "Add Movie"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            font_name: "Times"
+            on_release: app.root.current = "AddMovieScreen"
+        RoundedButtonRecommendation:
+            text: "Watch Now"
+            font_size: "40sp"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            color: (0, 0, 0, 1) #Text Color
+            font_name: "Timesbd"
+            on_release: app.root.current = "GetRecommendationScreen"
+        Label:
+            text: ""
+            size_hint: .5,.5
+
+
+
+<AddMovieScreen>:
+    canvas.before:
+        Color:
+            rgba: (1, 222/255, 167/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "AddMovieScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        RoundedHomeButton:
+            text: "Home"
+        Label:
+            text: "Add Movie"
+            font_size: "60sp"
+            font_name: "Gabriola"
+            size_hint_y: 8
+            color: (0,0,0,1)
+        Label:
+            text: 'Insert Title'
+            color: (0,0,0,1)
+            font_size:'20dp'
+            font_name: "Times"
+            padding: 1,1
+            text_size: self.size
+            halign: 'center'
+            valign: 'center'
+        RoundedTextInput:
+            id: title
+        Label:
+            text: 'Insert Duration (Minutes)'
+            color: (0,0,0,1)
+            font_size:'20dp'
+            font_name: "Times"
+            padding: 5,5
+            text_size: self.size
+            halign: 'center'
+            valign: 'center'
+        RoundedTextInput:
+            id: duration
+        Label:
+            text: ""
+            size_hint: .5,.5
+        RoundedEnterButton:
+            text: "Enter"
+            font_size: "40sp"
+            font_name: "Timesbd"
+            size_hint: .5,2
+            pos_hint: { "center_x": .5}
+            on_release:
+                root.addMovie(title, duration)
+                app.root.current = "HomeScreen"
+
+        Label:
+            text: ""
+            size_hint: .5,.5
+
+
+<AddTvScreen>:
+    canvas.before:
+        Color:
+            rgba: (1, 222/255, 167/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "AddTvScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        RoundedHomeButton:
+            text: "Home"
+        Label:
+            text: "Add TV Show"
+            font_size: "60sp"
+            size_hint_y: 8
+            color: (0,0,0,1)
+            font_name: "Gabriola"
+        Label:
+            text: 'Insert Title'
+            color: (0,0,0,1)
+            font_size:'20dp'
+            font_name: "Times"
+            text_size: self.size
+            halign: 'center'
+            valign: 'center'
+        RoundedTextInput:
+            id: title
+        Label:
+            text: 'Insert Duration (Minutes)'
+            color: (0,0,0,1)
+            font_size:'20dp'
+            font_name: "Times"
+            text_size: self.size
+            halign: 'center'
+            valign: 'center'
+        RoundedTextInput:
+            id: duration
+        Label:
+            text: ""
+            size_hint: .5,.5
+        RoundedEnterButton:
+            text: "Enter"
+            font_size: "40sp"
+            font_name: "Timesbd"
+            spacing: "12dp"
+            size_hint: .5,2
+            pos_hint: { "center_x": .5}
+            on_release:
+                root.addShow(title, duration)
+                app.root.current = "HomeScreen"
+        Label:
+            text: ""
+            size_hint: .5,.5
+
+
+<GetRecommendationScreen>:
+    canvas.before:
+        Color:
+            rgba: (1, 222/255, 167/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "GetRecommendationScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+        RoundedHomeButton:
+            text: "Home"
+            size_hint: .15,.5
+            pos_hint: { "center_x": .9}
+        Label:
+            text: "Recommended"
+            font_size: "60sp"
+            size_hint: 1,1
+            color: (0,0,0,1)
+            font_name: "Gabriola"
+        RoundedButton:
+            text: "Movie Recommendations"
+            font_size: "40sp"
+            font_name: "Times"
+            size_hint: 1,1
+            pos_hint: { "center_x": .5}
+            on_release: app.root.current = "GetRecommendationMovieScreen"
+        RoundedButton:
+            text: "TV Show Recommendations"
+            font_size: "40sp"
+            font_name: "Times"
+            size_hint: 1,1
+            pos_hint: { "center_x": .5}
+            on_release: app.root.current = "GetRecommendationTvScreen"
+
+<GetRecommendationMovieScreen>:
+    canvas.before:
+        Color:
+            rgba: (1, 222/255, 167/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "GetRecommendationMovieScreen"
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+        RoundedHomeButton:
+            text: "Home"
+            pos_hint: { "center_x": .9}
+        Label:
+            text: "Recommended Movie"
+            font_size: "60sp"
+            size_hint: 1,1
+            color: (0,0,0,1)
+            font_name: "Gabriola"
+        Label:
+            text: 'Insert Available Time (Minutes)'
+            color: (0,0,0,1)
+            font_size:'20dp'
+            font_name: "Times"
+            text_size: self.size
+            halign: 'center'
+            valign: 'center'
+        RoundedTextInput:
+            id: AvailableTime
+        Label:
+            text: ""
+            size_hint: .5,.5
+        RoundedEnterButton:
+            text: "Enter"
+            font_size: "40sp"
+            font_name: "Timesbd"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            on_release:
+                root.movieRecommendation(AvailableTime)
+                app.root.current = "HomeScreen"
+
+        Label:
+            text: ""
+            size_hint: .5,.5
+
+<GetRecommendationTvScreen>:
+    canvas.before:
+        Color:
+            rgba: (1, 222/255, 167/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "GetRecommendationTvScreen"
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+        RoundedHomeButton:
+            text: "Home"
+            pos_hint: { "center_x": .9}
+        Label:
+            text: "Recommended TV Show"
+            font_size: "60sp"
+            size_hint: 1,1
+            color: (0,0,0,1)
+            font_name: "Gabriola"
+        Label:
+            text: 'Insert Available Time (Minutes)'
+            color: (0,0,0,1)
+            font_size:'20dp'
+            font_name: "Times"
+            text_size: self.size
+            halign: 'center'
+            valign: 'center'
+        RoundedTextInput:
+            id: AvailableTime
+        RoundedEnterButton:
+            text: "Enter"
+            font_size: "40sp"
+            font_name: "Timesbd"
+            size_hint: .75,1
+            pos_hint: { "center_x": .5}
+            on_release:
+                root.tvShowRecommendation(AvailableTime)
+                app.root.current = "HomeScreen"
+
+        Label:
+            text: ""
+            size_hint: .5,.5
+
+<RoundedButton@Button>
+    background_normal: ''
+    background_color: (0,0,0,0)
+    color: (0, 0, 0, 1) #Text Color
+    canvas.before:
+        Color:
+            rgba: (1, 199/255, 146/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [50]
+<RoundedButtonRecommendation@Button>
+    background_normal: ''
+    background_color: (0,0,0,0)
+    color: (0, 0, 0, 1) #Text Color
+    canvas.before:
+        Color:
+            rgba: (252/255, 149/255, 45/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [50]
+<RoundedEnterButton@Button>
+    background_normal: ''
+    background_color: (0,0,0,0)
+    color: (0, 0, 0, 1) #Text Color
+    canvas.before:
+        Color:
+            rgba: (252/255, 149/255, 45/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [50]
+<RoundedTextInput@TextInput>
+    background_normal: ''
+    background_color: (1, 243/255, 217/255, 1)
+    color: (1, 1, 1, 1) #Text Color
+    multiline: False
+    size_hint: .5,1
+    pos_hint: { "center_x": .5}
+    valign: 'center'
+    halign: 'center'
+    canvas.after:
+        Color:
+            rgba: (1,1,1,1)
+<RoundedHomeButton@Button>
+    font_size: "17sp"
+    font_name: "Times"
+    background_normal: ''
+    background_color: (0,0,0,0)
+    color: (0, 0, 0, 1) #Text Color
+    size_hint: .12,1
+    pos_hint: { "center_x": .1}
+    on_release:
+        app.root.current = "HomeScreen"
+    canvas.before:
+        Color:
+            rgba: (252/255, 149/255, 45/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [50]
